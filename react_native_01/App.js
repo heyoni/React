@@ -20,9 +20,30 @@ class App extends Component {
 
   //버튼을 눌렀을 때 랜덤번호가 추가되게끔 하는 함수
   onAddRandomNum = () => {
-    alert('add random num!')
+    const randomNum = Math.floor(Math.random()*100)+1;
+    this.setState(prevState =>{
+      return {
+        random: [...prevState.random, randomNum]
+      }
+    })
   }
+  //state에 선언한 랜덤이라는 배열에서 터치된 인덱스의 요소를 제외한
+  //나머지 dyth값을 새로운 배열에 복사하고
+  //그 배열을 setState를 통해 랜덤배열을 업데이트 할 예정
+  onNumDelete = (position) =>{
+    // alert('delete')
 
+    //filter함수 : 특정 조건에 만족하는 요소들만 뽑아내서 새 배열을 만드는 함수
+    //여기서는 인덱스와 포지션이 다를 경우에 새 배열을 만들어줌
+    //num변수는 반드시 있어야함 요소 값 업데이트를 위해서(실제로는 사용 안함)
+    const newArray = this.state.random.filter((num,index) =>{
+      return position != index;
+    })
+    this.setState({
+      random: newArray
+    })
+  }
+ 
   render() {
     return (
       //내부에서 주는 방법
@@ -59,7 +80,10 @@ class App extends Component {
         </View>
         <Generator add={this.onAddRandomNum}/>
 
-        <NumList num={this.state.random}/>
+        <NumList 
+          num={this.state.random}
+          delete={this.onNumDelete}
+          />
       </View>
     )
   } 
