@@ -7,7 +7,7 @@
  */
 
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import Header from './src/header';
 import Generator from './src/generator'
 import NumList from './src/numlist'
@@ -78,12 +78,22 @@ class App extends Component {
           onPress={()=>alert('text touch event')}
           >hello world</Text>
         </View>
-        <Generator add={this.onAddRandomNum}/>
 
-        <NumList 
-          num={this.state.random}
-          delete={this.onNumDelete}
-          />
+        {/* 스크롤하는 방법 */}
+        <ScrollView
+          style={{width:'100%'}}
+          // onMomentumScrollBegin={()=>alert('begin')}//스크롤 움직일 때 트리거
+          // onMomentumScrollEnd={()=>alert('end')}//스크롤 움직임이 멈췄을 때 트리거
+          // onScroll={()=>alert('scrolling')}//움직이자마자 트리거
+          // onContentSizeChange={(width, height)=>alert(height)}//사이즈를 트리거
+          // bounces={true}//통통튀는 효과
+        >
+          <Generator add={this.onAddRandomNum}/>
+          <NumList 
+            num={this.state.random}
+            delete={this.onNumDelete}
+            />
+          </ScrollView>
       </View>
     )
   } 
