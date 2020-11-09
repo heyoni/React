@@ -7,7 +7,7 @@
  */
 
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, StyleSheet, TextInput } from 'react-native';
 
 
 class Input extends Component {
@@ -15,7 +15,7 @@ class Input extends Component {
         myTextInput:''
     }
 
-    //입력된 텍스트를 계속 업데이트 시켜주느 함수
+    //입력된 텍스트를 계속 업데이트 시켜주는 함수
     //event라는 인자를 받아올건데, 여기에 변경되는 값들이 들어가고 이 함수 안에는
     //setState를 통해서 myTextInput을 업데이트 시켜줄것
     onChangeInput = (event) =>{
@@ -23,6 +23,11 @@ class Input extends Component {
             myTextInput:event
         })
     }
+    //btn, scrollview, textinput에서는 이 input.js를 사용하지 않음
+    //react-native는 무조건 부모에서 자식으로 흘러가는 데이터 흐름을 보이는데
+    //우리는 지금 input.js를 app.js에서 import해서 사용하고 있기 때문에
+    //자식이 갖고있는 값을 부모에게 넘겨줄 수 없음
+    //따라서 필요한 기능을 가지고 app.js로 넘어감
     render() {
         return (
             <View style={styles.mainView}>

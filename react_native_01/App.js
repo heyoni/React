@@ -7,16 +7,34 @@
  */
 
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { TextInput, Button, View, Text, StyleSheet, ScrollView } from 'react-native';
 import Header from './src/header';
 import Generator from './src/generator'
 import NumList from './src/numlist'
 import Input from './src/input'
 
 class App extends Component {
+  onChangeInput = (event) =>{
+      this.setState({
+          myTextInput:event
+      })
+  }
+  onAddTextInput = () =>{
+    this.setState(prevState=>{
+      return{
+        //텍스트라인이 빈 값으로 바뀜
+        myTextInput:'',
+        //사용자가 입력한 값들이 alpahbet배열에 들어가게됨
+        alphabet:[...prevState.alphabet, prevState.myTextInput]
+      }
+    })
+  } 
   state = {
-    appName : 'my first app test',
-    random : [36, 999]
+    myTextInput:'',
+    //이 배열의 요소들을 스크롤 뷰에 추가할 예정
+    alphabet:['a','b','c','d']
+    // appName : 'my first app test',
+    // random : [36, 999]
   }
 
   //버튼을 눌렀을 때 랜덤번호가 추가되게끔 하는 함수
@@ -44,7 +62,8 @@ class App extends Component {
       random: newArray
     })
   }
- 
+
+
   render() {
     return (
       //내부에서 주는 방법
@@ -97,7 +116,33 @@ class App extends Component {
       //     </ScrollView>
 
       <View style={styles.mainView}>
-        <Input />
+        <TextInput
+          value={this.state.myTextInput}
+          style={styles.input}
+          onChangeText={this.onChangeInput}
+          
+          multiline={true}
+          maxLength={30}
+          autoCapitalize={'none'}
+          editable={true}
+        />
+        <Button 
+          title='add text input'
+          onPress={this.onAddTextInput}
+        />
+        <ScrollView style={{width:'100%'}}>
+          {
+            this.state.alphabet.map((item, idx) => (
+              <Text 
+                style={styles.mainText}
+                key={idx}
+              >
+                {item}
+              </Text>
+            ))
+          }
+        </ScrollView>
+
       </View>
     )
   } 
@@ -130,7 +175,16 @@ const styles = StyleSheet.create({
   mainText:{
     fontSize:20,
     fontWeight:'bold',
-    padding:10
+    padding:10,
+    margin:20,
+    backgroundColor:'green'
+  },
+  input :{
+    width:'100%',
+    backgroundColor:'#cecece',
+    marginTop:20,
+    fontSize:25,
+    padding:10,
   }
 })
 
