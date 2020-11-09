@@ -11,10 +11,11 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import Header from './src/header';
 import Generator from './src/generator'
 import NumList from './src/numlist'
+import Input from './src/input'
 
 class App extends Component {
   state = {
-    appName : 'my first app',
+    appName : 'my first app test',
     random : [36, 999]
   }
 
@@ -70,30 +71,33 @@ class App extends Component {
       //   </View> */}
       //   <Header name={this.state.appName}/>
       // </View>
-      <View style={styles.mainView}>
-        <Header name={this.state.appName}/>
-        <View>
-          <Text 
-          style={styles.mainText}
-          onPress={()=>alert('text touch event')}
-          >hello world</Text>
-        </View>
+      // <View style={styles.mainView}>
+      //   <Header name={this.state.appName}/>
+      //   <View>
+      //     <Text 
+      //     style={styles.mainText}
+      //     onPress={()=>alert('text touch event')}
+      //     >hello world</Text>
+      //   </View>
 
-        {/* 스크롤하는 방법 */}
-        <ScrollView
-          style={{width:'100%'}}
-          // onMomentumScrollBegin={()=>alert('begin')}//스크롤 움직일 때 트리거
-          // onMomentumScrollEnd={()=>alert('end')}//스크롤 움직임이 멈췄을 때 트리거
-          // onScroll={()=>alert('scrolling')}//움직이자마자 트리거
-          // onContentSizeChange={(width, height)=>alert(height)}//사이즈를 트리거
-          // bounces={true}//통통튀는 효과
-        >
-          <Generator add={this.onAddRandomNum}/>
-          <NumList 
-            num={this.state.random}
-            delete={this.onNumDelete}
-            />
-          </ScrollView>
+      //   {/* 스크롤하는 방법 */}
+      //   <ScrollView
+      //     style={{width:'100%'}}
+      //     // onMomentumScrollBegin={()=>alert('begin')}//스크롤 움직일 때 트리거
+      //     // onMomentumScrollEnd={()=>alert('end')}//스크롤 움직임이 멈췄을 때 트리거
+      //     // onScroll={()=>alert('scrolling')}//움직이자마자 트리거
+      //     // onContentSizeChange={(width, height)=>alert(height)}//사이즈를 트리거
+      //     bounces={true}//통통튀는 효과
+      //   >
+      //     <Generator add={this.onAddRandomNum}/>
+      //     <NumList 
+      //       num={this.state.random}
+      //       delete={this.onNumDelete}
+      //       />
+      //     </ScrollView>
+
+      <View style={styles.mainView}>
+        <Input />
       </View>
     )
   } 
