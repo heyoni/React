@@ -51,7 +51,7 @@ class PickerComponent extends Component {
                 size='large'
                 color='green'
                 //서버를 필요로 하는 일을 할 때 사용하며 로딩중일때 true, 받아오면 false로 변경해줌
-                animating={true}
+                animating={false}
                 />
                 <Picker 
                 style={{height: 50, width: 250}}
