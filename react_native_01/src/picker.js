@@ -7,7 +7,7 @@
  */
 
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet,ActivityIndicator } from 'react-native';
 import {Picker} from '@react-native-community/picker';
 import Slider from '@react-native-community/slider';
 
@@ -43,6 +43,16 @@ class PickerComponent extends Component {
                 <Text
                 style={styles.input}
                 >{this.state.value}</Text>
+
+                {/* ActivityIndicator
+                    다운로드 받거나 페이지 넘어갈 때 보여주는 '로딩 중...' 화면 표시하는 것 */}
+                <ActivityIndicator
+                style={{paddingTop: 200}}
+                size='large'
+                color='green'
+                //서버를 필요로 하는 일을 할 때 사용하며 로딩중일때 true, 받아오면 false로 변경해줌
+                animating={true}
+                />
                 <Picker 
                 style={{height: 50, width: 250}}
                 selectedValue={this.state.country}
