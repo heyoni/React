@@ -7,19 +7,24 @@
  */
 
 import React, { Component } from 'react';
-import { TextInput, Button, View, Text, StyleSheet, Image } from 'react-native';
-import Hi2 from './assets/images/desktop.jpg'
+import { View, Text, StyleSheet, Image } from 'react-native';
+// import Hi2 from './assets/images/desktop.jpg'
+import Modal from'./src/modal'
 
+
+//modal : 화면 가장 위에 표시 될 레이아웃
 class App extends Component {
   render() {
     return (
       <View style={styles.mainView}>
-        <Image 
+        {/* <Image 
           style={styles.image}
           source={{uri: 'https://picsum.photos/id/237/200/300'}}
           resizeMode='contain'
           onLoadEnd={()=>alert('image Loaded!')}
-        />
+        /> */}
+        <Modal />
+
       </View>
     )
   } 
