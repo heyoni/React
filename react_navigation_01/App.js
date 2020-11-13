@@ -22,7 +22,9 @@ import UserScreen from './src/user';
 // 랜딩하는 부분에서 stack.screen으로 사용함
 const Stack = createStackNavigator();
 
-
+//route : home(홈스크린을 컴포넌트로 갖는 홈루트), user(유저스크린을 컴포넌트로 갖는 유저루트)
+//현재는 home이 먼저 작성되어 있기 때문에 홈이 제일 먼저 띄워지나,
+//userScreen을 먼저 띄우고 싶다면 Navigator 옆에 initialRouteName ="user"로 주면 됨
 class App extends Component {
   render() {
     return(

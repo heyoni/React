@@ -9,12 +9,14 @@ import 'react-native-gesture-handler';
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 
+//리엑트 네비게이션에서는 데이터를 보낸다 : 파라미터를 루트로 passing한다 라는 뜻
+//home -> user로 데이터를 보낼것
 class HomeScreen extends Component {
   render() {
     return(
         <View style={{
             flex:1,
-            alignItems:'center',
+             alignItems:'center',
             justifyContent:'center'
         }}>
           <Text>home screen</Text>
@@ -30,7 +32,14 @@ class HomeScreen extends Component {
                 // 따라서 스크린 컴포넌트에서는 this.prop를 이용해서 네비게이션 프롭을 사용할 수 있는거고
                 // navigation prop에 정의된 네비게이트 함수를 호출할 수 있는것
 
-                this.props.navigation.navigate('user')//App.js에서 정의한 name값을 인자로 넣어줌
+                this.props.navigation.navigate('user', {
+                    //객체를 넣어줌
+                    //이 값들을 userScreen으로 넘겨줄거고 파라미터라고 부름 
+                    //이 값들이 유저스크린의 루트가 됨
+                    userIdx: 100,
+                    userName: 'hyewon',
+                    userLastName:'Kim'
+                })//App.js에서 정의한 name값을 인자로 넣어줌
 
             }}
           />
