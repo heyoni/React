@@ -9,8 +9,6 @@ import 'react-native-gesture-handler';
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import { TextInput } from 'react-native';
-import { event } from 'react-native-reanimated';
-import { TouchableOpacity } from 'react-native';
 
 //리엑트 네비게이션에서는 데이터를 보낸다 : 파라미터를 루트로 passing한다 라는 뜻
 //home -> user로 데이터를 보낼것
@@ -84,7 +82,20 @@ class HomeScreen extends Component {
 
             }}
           />
-              
+          <Button
+            title='버튼클릭, 타이틀 명 바꾸기'
+            onPress={()=>
+              //네비게이션 prop에 정의된 setOptions라는 함수를 이용해서 값을 변경해줄 것
+              this.props.navigation.setOptions({
+                  title:'바꼈습니다!',
+                  headerStyle:{
+                      backgroundColor: 'pink'
+                  },
+                  headerTintColor: 'red'
+                })
+            }
+          />
+
         </View>
     )
   }

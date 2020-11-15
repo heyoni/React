@@ -10,14 +10,29 @@ import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 
 class UserScreen extends Component {
-  render() {
+    //각각 스크린에 각기 다른 스타일 지정해주기
+    headerStyle = () =>{
+        this.props.navigation.setOptions({
+              title:'user로 이동할때 타이틀명 바꾸기',
+              headerStyle:{
+                  backgroundColor: 'blue'
+              },
+              headerTintColor: 'yellow',
+              headerTitleStyle:{
+                fontWeight: 'bold',
+                color: 'green'
+              },
+        })
+    }
+    render() {
+        // this.headerStyle();
     //param라는 객체를 만들어서 이 스크린의 루트값을 할당해줌
     //이 값에는 홈스크린에서 보내준 값들(userIdx, userName, userLastName)이 있음
-    const {params} = this.props.route;
-    //params에서 받아온 값이 있다면 할당해주고 없으면 null값으로 할당해줌
-    const userIdx = params ? params.userIdx : null;
-    const userName = params ? params.userName : null;
-    const userLastName = params ? params.userLastName : null;
+        const {params} = this.props.route;
+        //params에서 받아온 값이 있다면 할당해주고 없으면 null값으로 할당해줌
+        const userIdx = params ? params.userIdx : null;
+        const userName = params ? params.userName : null;
+        const userLastName = params ? params.userLastName : null;
 
     return(
         <View style={{
