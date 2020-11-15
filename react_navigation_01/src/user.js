@@ -22,6 +22,7 @@ class UserScreen extends Component {
                 fontWeight: 'bold',
                 color: 'green'
               },
+              headerBackTitle: 'BACK'
         })
     }
     render() {

@@ -60,7 +60,7 @@ class HomeScreen extends Component {
             autoCapitalize={'none'}
           />
           <Button 
-            title="user screen으로 이동하기"
+            title="user screen으로 이동하기2"
             //터치이벤트
             onPress={()=>{
                 //콜백함수

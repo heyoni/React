@@ -7,15 +7,15 @@
  */
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 // 리엑트 네비게이션을 사용하기 위해서는 네비게이션 컨테이너라는 태그에 감싸줘야함
 // 그전에 임포터해줘야 하는 요소들임 
 // 네비게이션 컨테이너 : 네비게이션 구조, 상태를 관리하기 위한 컴포넌트
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/home';
-import USerScreen from './src/user';
 import UserScreen from './src/user';
+import LogoTitle from './src/logo'
 
 
 // 스크린, 네비게이터를 리턴하는 프로퍼티
@@ -26,6 +26,14 @@ const Stack = createStackNavigator();
 //현재는 home이 먼저 작성되어 있기 때문에 홈이 제일 먼저 띄워지나,
 //userScreen을 먼저 띄우고 싶다면 Navigator 옆에 initialRouteName ="user"로 주면 됨
 class App extends Component {
+  logoTitle = () =>{
+    return(
+      <Image 
+        style={{width: 40, height: 40}}
+        source={require('./src/assets/pics/home_icon.png')}
+      />
+    )
+  }
   render() {
     return(
       <NavigationContainer>
@@ -51,7 +59,10 @@ class App extends Component {
           <Stack.Screen 
             name='home' 
             component={HomeScreen}
-            options={{title:'홈 화면'}}
+            options={{
+              title:'home haemeuyn',
+              headerTitle: <LogoTitle/>
+            }}
           />
           <Stack.Screen 
             name='user'
@@ -63,17 +74,17 @@ class App extends Component {
               userLastName: 'lee'
             }}
             // 홈화면에서 스타일 지정하기
-            // options={{
-            //   title:'유저 화면',
-            //   headerStyle:{
-            //       backgroundColor: 'pink'
-            //   },
-            //   headerTintColor: 'red',
-            //   headerTitleStyle:{
-            //     fontWeight: 'bold',
-            //     color: 'purple'
-            //   }
-            // }}
+            options={{
+              title:'유저 화면',
+              headerStyle:{
+                  backgroundColor: 'pink'
+              },
+              headerTintColor: 'red',
+              headerTitleStyle:{
+                fontWeight: 'bold',
+                color: 'purple'
+              }
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>
