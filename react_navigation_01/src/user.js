@@ -22,7 +22,17 @@ class UserScreen extends Component {
                 fontWeight: 'bold',
                 color: 'green'
               },
-              headerBackTitle: 'BACK'
+              headerBackTitle: 'BACK',
+              headerRight: () => (
+                <Button 
+                  title='Go back'
+                  onPress={()=>{
+                      //화면 이동 이벤트
+                      this.props.navigation.navigate('Home')
+                  }}
+                  color='orange'
+                />
+              )
         })
     }
     render() {

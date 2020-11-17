@@ -7,7 +7,7 @@
  */
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, Button } from 'react-native';
 // 리엑트 네비게이션을 사용하기 위해서는 네비게이션 컨테이너라는 태그에 감싸줘야함
 // 그전에 임포터해줘야 하는 요소들임 
 // 네비게이션 컨테이너 : 네비게이션 구조, 상태를 관리하기 위한 컴포넌트
@@ -60,10 +60,17 @@ class App extends Component {
             name='home' 
             component={HomeScreen}
             options={{
-              title:'home haemeuyn',
-              headerTitle: <LogoTitle/>
+              title:'home입니다.',
+              headerTitle: <LogoTitle/>,
+              headerRight: () => (
+                <Button 
+                  title='info'
+                  onPress={()=>alert('button 눌렸어요!')}
+                  color='orange'
+                />
+              )
             }}
-          />
+          />``
           <Stack.Screen 
             name='user'
             component={UserScreen}
