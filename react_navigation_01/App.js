@@ -25,6 +25,9 @@ import LogoTitle from './src/logo'
 import DrawerHomeScreen from './src/home_drawer'
 import DrawerUserScreen from './src/user_drawer'
 import { Linking } from 'react-native';
+import PictogramHome from './src/assets/pics/home_icon.png'
+
+
 
 CustomDrawerContent = (props) =>{
   return (
@@ -34,7 +37,9 @@ CustomDrawerContent = (props) =>{
       <DrawerItem 
         label='help'
         onPress={()=>Linking.openURL('http://www.google.com')}
+        icon={()=><LogoTitle/>}
       />
+      {/* 아이콘 넣는 방법1 */}
       <DrawerItem 
         label='info'
         onPress={()=>alert('info Window')}
@@ -85,7 +90,20 @@ class App extends Component {
           //대충 이해하되, 4개의 props를 전달해줘야하구나 정도로만 알면 됨
           drawerContent={props => <CustomDrawerContent {...props} />}
         >
-          <Drawer.Screen name="Home" component={DrawerHomeScreen}/>
+          <Drawer.Screen 
+            name="Home" 
+            component={DrawerHomeScreen}
+            options={{
+              //{/* 아이콘 넣는 방법2 */}
+              drawerIcon: () =>(
+                <Image
+                  //이미지 경로를 넣어줘야함
+                  source={PictogramHome}
+                  style={{width: 40, height: 40}}
+                />
+              )
+            }}
+          />
           <Drawer.Screen name="User" component={DrawerUserScreen}/>
         </Drawer.Navigator>
       </NavigationContainer>
