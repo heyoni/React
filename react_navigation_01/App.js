@@ -26,27 +26,28 @@ import DrawerHomeScreen from './src/home_drawer'
 import DrawerUserScreen from './src/user_drawer'
 import { Linking } from 'react-native';
 import PictogramHome from './src/assets/pics/home_icon.png'
+import SideDrawer from './src/my_drawer'
 
 
 
-CustomDrawerContent = (props) =>{
-  return (
-    //스크롤 뷰, 아이템 리스트를 반환해 줄 예정
-    <DrawerContentScrollView {...props}>
-      <DrawerItemList {...props}/>
-      <DrawerItem 
-        label='help'
-        onPress={()=>Linking.openURL('http://www.google.com')}
-        icon={()=><LogoTitle/>}
-      />
-      {/* 아이콘 넣는 방법1 */}
-      <DrawerItem 
-        label='info'
-        onPress={()=>alert('info Window')}
-      />
-    </DrawerContentScrollView>
-  )
-}
+// CustomDrawerContent = (props) =>{
+//   return (
+//     //스크롤 뷰, 아이템 리스트를 반환해 줄 예정
+//     <DrawerContentScrollView {...props}>
+//       <DrawerItemList {...props}/>
+//       <DrawerItem 
+//         label='help'
+//         onPress={()=>Linking.openURL('http://www.google.com')}
+//         icon={()=><LogoTitle/>}
+//       />
+//       {/* 아이콘 넣는 방법1 */}
+//       <DrawerItem 
+//         label='info'
+//         onPress={()=>alert('info Window')}
+//       />
+//     </DrawerContentScrollView>
+//   )
+// }
 
 // 스크린, 네비게이터를 리턴하는 프로퍼티
 // 랜딩하는 부분에서 stack.screen으로 사용함
@@ -88,7 +89,7 @@ class App extends Component {
           // 3. drawer screen에 옵션을 담기위한 디스크립터스
           // 4. drew가 열렸는지 판단하는 progress
           //대충 이해하되, 4개의 props를 전달해줘야하구나 정도로만 알면 됨
-          drawerContent={props => <CustomDrawerContent {...props} />}
+          drawerContent={props => <SideDrawer {...props} />}
         >
           <Drawer.Screen 
             name="Home" 

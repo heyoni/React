@@ -12,7 +12,7 @@ import Logo from './assets/pics/home_icon.png'
 
 
 class DrawerUserScreen extends Component {
-  //{/* 아이콘 넣는 방법3 */}
+  //{/* 아이콘 넣는 방법3 : 이 방법은 페이지에 들어가야 아이콘이 생김*/}
   drawerStyle = () => {
       this.props.navigation.setOptions({
         drawerIcon: () =>(
