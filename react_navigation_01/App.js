@@ -31,7 +31,7 @@ import PictogramHome from './src/assets/pics/home_icon.png'
 import SideDrawer from './src/my_drawer'
 import TabHomeScreen from './src/home_tab'
 import TabUserScreen from './src/user_tab'
-
+import TabMessageScreen from './src/message_tab'
 
 
 // CustomDrawerContent = (props) =>{
@@ -59,21 +59,62 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 
+
+const TabBarIcon = (focused, name) => {
+  let iconImagePath;
+  if (name === 'Home'){
+    iconImagePath = require('./src/assets/pics/home_icon.png')
+  }else if (name === 'User'){
+    iconImagePath = require('./src/assets/pics/user.png')
+  }else if (name === 'Message'){
+    iconImagePath = require('./src/assets/pics/message.png')
+  }
+  return(
+    <Image
+      style={{
+        width: focused? 24 : 20,
+        height: focused? 24 : 20,
+      }}
+      source={iconImagePath}
+    />
+  )
+}
 //route : home(홈스크린을 컴포넌트로 갖는 홈루트), user(유저스크린을 컴포넌트로 갖는 유저루트)
 //현재는 home이 먼저 작성되어 있기 때문에 홈이 제일 먼저 띄워지나,
 //userScreen을 먼저 띄우고 싶다면 Navigator 옆에 initialRouteName ="user"로 주면 됨
 class App extends Component {
-
-
   //스타일 한가지만 적용 : stack.screen options
   //공통 : stack.navigator screenOptions
   //drawNavgator는 모든 스크린에서 열리기 때문에 스타일이 공통으로 적용되기 때문에 draw.navigator 태그 안에서 스타일 적용함
   render() {
     return (
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator
+          initialRouteName="Home"
+          tabBarOptions={{
+            //터치가 되었을 때
+            activeBackgroundColor:'skyblue',
+            activeTintColor:'blue',
+            inactiveTintColor:'#fff',
+            style:{
+              backgroundColor:'#c6cbef'
+            },
+            //아이콘 위치 조정
+            labelPosition:'beside-icon'
+
+          }}
+          //클릭했을 때 화면이 커보이게 하는 효과
+          screenOptions={({route})=>({
+            tabBarLabel: route.name,
+            tabBarIcon:({focused})=>(
+              TabBarIcon(focused, route.name)
+            ),
+          })}
+        >
           <Tab.Screen name="Home" component={TabHomeScreen} />
           <Tab.Screen name="User" component={TabUserScreen} />
+          <Tab.Screen name="Message" component={TabMessageScreen} />
+
         </Tab.Navigator>
       </NavigationContainer>
       // <NavigationContainer>

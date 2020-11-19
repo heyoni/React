@@ -9,7 +9,7 @@ import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 
 
-class TabUserScreen extends Component {
+class TabMessageScreen extends Component {
   render() {
     return(
         <View style={{
@@ -17,10 +17,10 @@ class TabUserScreen extends Component {
             alignItems:'center',
             justifyContent:'center'
         }}>
-            <Text>User Screen</Text>
+            <Text>Message Screen</Text>
         </View>
     )
   }
 }
 
-export default TabUserScreen;
+export default TabMessageScreen;
