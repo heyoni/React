@@ -32,6 +32,7 @@ import SideDrawer from './src/my_drawer'
 import TabHomeScreen from './src/home_tab'
 import TabUserScreen from './src/user_tab'
 import TabMessageScreen from './src/message_tab'
+import Icon from 'react-native-vector-icons/dist/Ionicons'
 
 
 // CustomDrawerContent = (props) =>{
