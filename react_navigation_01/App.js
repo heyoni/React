@@ -7,7 +7,7 @@
  */
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DrawerActions, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
@@ -35,6 +35,7 @@ import TabMessageScreen from './src/message_tab'
 import Icon from 'react-native-vector-icons/dist/Ionicons'
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import StackHomeScreen from './src/home';
+import { TouchableOpacity } from 'react-native';
 
 
 // CustomDrawerContent = (props) =>{
@@ -65,7 +66,7 @@ const Tab = createBottomTabNavigator();
 
 
 //이 전체가 스택 네비게이터의 컴포넌트로 들어갈 것
-MainScreen = () => {
+TabComponent = () => {
   return(
     <Tab.Navigator
     initialRouteName="Home"
@@ -128,6 +129,53 @@ const TabBarIcon = (focused, name) => {
     />
   )
 }
+
+const DrawarComponent = () =>{
+  return(
+        <Drawer.Navigator
+          initialRouteName="Home"
+          drawerType="front"
+          drawerPosition='right'
+          drawerStyle={{
+            backgroundColor:'#c6cbef',
+            width:200
+          }}
+          drawerContentOptions={{
+            activeTintColor:'red',
+            activeBackgroundColor:'skyblue'
+          }}
+          drawerContent={props => <SideDrawer {...props} />}
+        >
+          <Drawer.Screen 
+            name="Home" 
+            component={DrawerHomeScreen}
+            options={{
+              drawerIcon: () =>(
+                <Image
+                  source={PictogramHome}
+                  style={{width: 40, height: 40}}
+                />
+              )
+            }}
+          />
+          <Drawer.Screen name="User" component={TabComponent}/>
+        </Drawer.Navigator>
+  )}
+
+const HeaderRight = () =>{
+  const navigation = useNavigation();
+  return (
+    <View style={{flexDirection:'row', paddingRight:15}}>
+      <TouchableOpacity
+        onPress={()=>{
+          navigation.dispatch(DrawerActions.openDrawer())
+        }}
+      >
+        <Text>Open</Text>
+      </TouchableOpacity>
+    </View>
+  )
+}
 //route : home(홈스크린을 컴포넌트로 갖는 홈루트), user(유저스크린을 컴포넌트로 갖는 유저루트)
 //현재는 home이 먼저 작성되어 있기 때문에 홈이 제일 먼저 띄워지나,
 //userScreen을 먼저 띄우고 싶다면 Navigator 옆에 initialRouteName ="user"로 주면 됨
@@ -139,7 +187,13 @@ class App extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Main" component={MainScreen}/>
+          <Stack.Screen 
+            name="Main" 
+            component={DrawarComponent} 
+            options={{
+              headerRight: ({}) => <HeaderRight/>
+            }}
+          />
           <Stack.Screen name="Home_stack" component={StackHomeScreen}/>
         </Stack.Navigator>
       </NavigationContainer>
