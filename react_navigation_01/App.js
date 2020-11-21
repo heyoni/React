@@ -21,7 +21,7 @@ import { View, Text, StyleSheet, Image, Button } from 'react-native';
 // 리엑트 네비게이션을 사용하기 위해서는 네비게이션 컨테이너라는 태그에 감싸줘야함
 // 그전에 임포터해줘야 하는 요소들임 
 // 네비게이션 컨테이너 : 네비게이션 구조, 상태를 관리하기 위한 컴포넌트
-import HomeScreen from './src/home';
+// import HomeScreen from './src/home';
 import UserScreen from './src/user';
 import LogoTitle from './src/logo'
 import DrawerHomeScreen from './src/home_drawer'
@@ -34,6 +34,7 @@ import TabUserScreen from './src/user_tab'
 import TabMessageScreen from './src/message_tab'
 import Icon from 'react-native-vector-icons/dist/Ionicons'
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
+import StackHomeScreen from './src/home';
 
 
 // CustomDrawerContent = (props) =>{
@@ -61,6 +62,41 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 
+
+
+//이 전체가 스택 네비게이터의 컴포넌트로 들어갈 것
+MainScreen = () => {
+  return(
+    <Tab.Navigator
+    initialRouteName="Home"
+    tabBarOptions={{
+      //터치가 되었을 때
+      activeBackgroundColor:'skyblue',
+      activeTintColor:'blue',
+      inactiveTintColor:'#fff',
+      style:{
+        backgroundColor:'#c6cbef'
+      },
+      //아이콘 위치 조정
+      // labelPosition:'beside-icon'
+      labelPosition:'below-icon'
+
+    }}
+    //클릭했을 때 화면이 커보이게 하는 효과
+    screenOptions={({route})=>({
+      tabBarLabel: route.name,
+      tabBarIcon:({focused})=>(
+        TabBarIcon(focused, route.name)
+      ),
+    })}
+  >
+    <Tab.Screen name="Home" component={TabHomeScreen} />
+    <Tab.Screen name="User" component={TabUserScreen} />
+    <Tab.Screen name="Message" component={TabMessageScreen} />
+
+  </Tab.Navigator>
+  )
+}
 
 const TabBarIcon = (focused, name) => {
   let iconImagePath;
@@ -102,34 +138,10 @@ class App extends Component {
   render() {
     return (
       <NavigationContainer>
-        <Tab.Navigator
-          initialRouteName="Home"
-          tabBarOptions={{
-            //터치가 되었을 때
-            activeBackgroundColor:'skyblue',
-            activeTintColor:'blue',
-            inactiveTintColor:'#fff',
-            style:{
-              backgroundColor:'#c6cbef'
-            },
-            //아이콘 위치 조정
-            // labelPosition:'beside-icon'
-            labelPosition:'below-icon'
-
-          }}
-          //클릭했을 때 화면이 커보이게 하는 효과
-          screenOptions={({route})=>({
-            tabBarLabel: route.name,
-            tabBarIcon:({focused})=>(
-              TabBarIcon(focused, route.name)
-            ),
-          })}
-        >
-          <Tab.Screen name="Home" component={TabHomeScreen} />
-          <Tab.Screen name="User" component={TabUserScreen} />
-          <Tab.Screen name="Message" component={TabMessageScreen} />
-
-        </Tab.Navigator>
+        <Stack.Navigator>
+          <Stack.Screen name="Main" component={MainScreen}/>
+          <Stack.Screen name="Home_stack" component={StackHomeScreen}/>
+        </Stack.Navigator>
       </NavigationContainer>
       // <NavigationContainer>
       //   <Drawer.Navigator

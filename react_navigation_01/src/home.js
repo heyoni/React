@@ -71,7 +71,7 @@ class HomeScreen extends Component {
                 // 따라서 스크린 컴포넌트에서는 this.prop를 이용해서 네비게이션 프롭을 사용할 수 있는거고
                 // navigation prop에 정의된 네비게이트 함수를 호출할 수 있는것
 
-                this.props.navigation.navigate('user', {
+                this.props.navigation.navigate('User', {
                     //객체를 넣어줌
                     //이 값들을 userScreen으로 넘겨줄거고 파라미터라고 부름 
                     //이 값들이 유저스크린의 루트가 됨
