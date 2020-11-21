@@ -33,6 +33,7 @@ import TabHomeScreen from './src/home_tab'
 import TabUserScreen from './src/user_tab'
 import TabMessageScreen from './src/message_tab'
 import Icon from 'react-native-vector-icons/dist/Ionicons'
+import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 
 
 // CustomDrawerContent = (props) =>{
@@ -63,20 +64,31 @@ const Tab = createBottomTabNavigator();
 
 const TabBarIcon = (focused, name) => {
   let iconImagePath;
+  let iconName, iconSize; //vector icons 사용하기
+
   if (name === 'Home'){
-    iconImagePath = require('./src/assets/pics/home_icon.png')
+    iconName = 'home-outline' //vector icons 사용하기
+    // iconImagePath = require('./src/assets/pics/home_icon.png')
   }else if (name === 'User'){
-    iconImagePath = require('./src/assets/pics/user.png')
+    iconName = 'people-outline'
+    // iconImagePath = require('./src/assets/pics/user.png')
   }else if (name === 'Message'){
-    iconImagePath = require('./src/assets/pics/message.png')
+    iconName = 'mail-outline'
+    // iconImagePath = require('./src/assets/pics/message.png')
   }
+
+  iconSize = focused ? 30 : 20 //선택이 되면 사이즈 조절
   return(
-    <Image
-      style={{
-        width: focused? 24 : 20,
-        height: focused? 24 : 20,
-      }}
-      source={iconImagePath}
+    // <Image
+    //   style={{
+    //     width: focused? 24 : 20,
+    //     height: focused? 24 : 20,
+    //   }}
+    //   source={iconImagePath}
+    // />
+    <Ionicons 
+      name={iconName}
+      size={iconSize}
     />
   )
 }
@@ -101,7 +113,8 @@ class App extends Component {
               backgroundColor:'#c6cbef'
             },
             //아이콘 위치 조정
-            labelPosition:'beside-icon'
+            // labelPosition:'beside-icon'
+            labelPosition:'below-icon'
 
           }}
           //클릭했을 때 화면이 커보이게 하는 효과
