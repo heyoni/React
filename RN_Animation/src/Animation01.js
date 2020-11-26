@@ -15,7 +15,9 @@ class AnimOne extends Component {
         //스타팅 포인트
         super();
         this.state = {
-            mySquare: new Animated.ValueXY(0, 0)
+            // mySquare: new Animated.ValueXY(0, 0)
+            mySquare: new Animated.Value(1)
+
         }
     }
 
@@ -26,11 +28,11 @@ class AnimOne extends Component {
         //     toValue: {x: 50, y: 300}
         // }).start();
         Animated.timing(this.state.mySquare, { //시간차 두고 천천히 실행
-            toValue: {x: 50, y: 300},
+            toValue: 0,
             duration: 2000,
             delay: 1500,
             // easing: Easing.bounce //엔딩포인트에서 통통 튀는 효과
-            easing: Easing.elastic(3) //멀리 갔다가 엔딩포인트 수렴
+            // easing: Easing.elastic(3) //멀리 갔다가 엔딩포인트 수렴
         }).start();
     }
   render() {
@@ -38,11 +40,10 @@ class AnimOne extends Component {
        <View>
         {/* //애니메이션을 실행하도록 하는 부분 */}
             <Animated.View
-                // style={{ //복잡한 방법
-                //     left: this.mySquare.x,
-                //     top: this.mySquare.y
-                // }}
-                style={this.state.mySquare.getLayout()} //간단한 방법
+                style={{ //복잡한 방법
+                    opacity: this.state.mySquare//투명해지기
+                }}
+                // style={this.state.mySquare.getLayout()} //간단한 방법
             >
                 <View style={styles.square}>
                 </View>
