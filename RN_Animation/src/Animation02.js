@@ -72,6 +72,10 @@ class AnimTwo extends Component {
             title="애니메이션 시작"
             onPress={this.runAnimation}
           />
+          <Button
+            title="콘솔 확인하기"
+            onPress={()=>console.log('버튼 눌렸어요!!')}
+          />
         </View>
 
     )
