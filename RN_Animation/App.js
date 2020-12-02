@@ -7,13 +7,21 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet,View, Text } from 'react-native'
+import { Dimensions, Platform, StyleSheet,View, Text } from 'react-native'
 import AnimOne from './src/Animation01'
 import AnimTwo from './src/Animation02'
 import Supertext from './src/utils/supertext'
 
 //component = 재사용 가능한 템플릿을 만든다
 class App extends Component {
+  functionA = () => {
+    if (Dimensions.get('window').fontScale === 1) {
+      console.warn('Good')
+    } else {
+      console.warn('Bad')
+
+    }
+  }
   checkSupport = () => {
     if (Platform.OS === 'ios'){
       if (Platform.Version < 13.6){
@@ -29,16 +37,20 @@ class App extends Component {
 
 
   render() {
-    console.warn(Platform.Version)
+    //화면전체
+    console.warn(Dimensions.get('screen'))
+    //메뉴바 제외한 크기
+    console.warn(Dimensions.get('window'))
+
     return (
       <View style={styles.container}>
-        {
+        {/* {
           this.checkSupport() ?
           <Supertext
             // style={{backgroundColor:'red'}}
             style={styles.div}
           >
-            {/* 템플릿 입니다2. */}
+
             {
               Platform.OS === 'ios'?
                 '아이폰이네요'
@@ -50,7 +62,9 @@ class App extends Component {
           <Text>
             지원하지 않습니다.
           </Text>
-        }
+        } 
+      */}
+        {this.functionA()}
       </View>
     )
   }
