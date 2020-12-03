@@ -11,6 +11,8 @@ import { Dimensions, Platform, StyleSheet,View, Text } from 'react-native'
 import AnimOne from './src/Animation01'
 import AnimTwo from './src/Animation02'
 import Supertext from './src/utils/supertext'
+import DeviceInfo from 'react-native-device-info';
+// import { getUniqueId, getManufacturer } from 'react-native-device-info';'
 
 //component = 재사용 가능한 템플릿을 만든다
 class App extends Component {
@@ -38,9 +40,11 @@ class App extends Component {
 
   render() {
     //화면전체
-    console.warn(Dimensions.get('screen'))
+    // console.warn(Dimensions.get('screen'))
     //메뉴바 제외한 크기
-    console.warn(Dimensions.get('window'))
+    // console.warn(Dimensions.get('window'))
+    console.warn(DeviceInfo.getBrand())
+    console.warn(DeviceInfo.isTablet())
 
     return (
       <View style={styles.container}>
