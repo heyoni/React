@@ -10,7 +10,20 @@ class MyComponent extends Component{
           number: 1
       }
   }
+  static defaultProps = {
+    name: '기본이름'
+  }
+
+  static propTypes = {
+      name: PropTypes.string,
+      age:PropTypes.number.isRequired
+  }
+
+  state = {
+      number: 0
+  }
   render(){
+
     return (
         <div>
             <p>안녕하세욤 저는 {this.props.name}입니다.</p>
