@@ -5,6 +5,7 @@ import MC from './MyComponent'
 import EP from './EventPractice'
 import EP2 from './EventPractice_method'
 import VS from './ValidationSample'
+import ScrollBox from './ScrollBox'
 
 
 
@@ -14,7 +15,14 @@ class App extends Component{
       // <MC age={3}/>
       // <EP/>
       // <EP2 />
-      <VS></VS>
+      // <VS />
+      <div>
+        {/* <SB /> */}
+        <ScrollBox ref={(ref) => this.ScrollBox=ref}/>
+        <button onClick={() => this.ScrollBox.scrollToBottom()}>
+          맨 밑으로
+        </button>
+      </div>
 
     );
   }
