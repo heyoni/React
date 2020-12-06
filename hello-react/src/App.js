@@ -4,6 +4,7 @@ import './App.css';
 import MC from './MyComponent'
 import EP from './EventPractice'
 import EP2 from './EventPractice_method'
+import VS from './ValidationSample'
 
 
 
@@ -12,7 +13,8 @@ class App extends Component{
     return (
       // <MC age={3}/>
       // <EP/>
-      <EP2 />
+      // <EP2 />
+      <VS></VS>
 
     );
   }
