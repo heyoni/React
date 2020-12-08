@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import styles from './App.module.css'
+import classNames from 'classnames/bind'
 
-
+const cx = classNames.bind(styles)
 class App extends Component {
   render() {
     return(
-      <div className= {styles.box}></div>
+      <div className={cx('box', 'blue')}></div>
     )
   }
 }
