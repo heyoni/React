@@ -6,6 +6,9 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles)
 
 class TodoItem extends Component {
+    shouldComponentUpdate(nextProps, nextState){
+        return this.props.done !== nextProps.done;
+    }
     render() {
         //todoitem이 받아오는 props
         //비구조화 할당을 사용함 : 'this.props.' 생략가능!
