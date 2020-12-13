@@ -50,5 +50,14 @@
 3. 위 페이지의 스타일리은 PageTemplate 디렉토리 안에 scss파일로 저장함
 4. 컴포넌트 인덱스 파일을 ./PageTemplate/index.js 파일안에 만들어준다 : 경로 입력시 './PageTemplate'로 입력하기 위해서
 5. 그럼 이 페이지를 불러오기 위해서 App.js 파일에서 렌더링 해줘야 함.  
-#### 정리 - PageTemplate.js라는 파일을 만들어서 인터페이스의 전체적인 틀인 유저관리 틀을 만들어준다. 이 컴포넌트의 스타일을 적용하기 위해서 PageTemplate이라는 디렉토리를 만들어서 적용해주는데, PageTemplate.scss에 스타일 값을 넣어준다. 같은 디렉토리에 index.js 파일은 경로를 입력할 떄 줄이기 위해 만든 파일이며 이 모든 파일들을 적용하기 위해서 src/component/App.js에 렌더링시킨다.
+#### 정리 - PageTemplate.js라는 파일을 만들어서 인터페이스의 전체적인 틀인 유저관리 틀을 만들어준다. 이 컴포넌트의 스타일을 적용하기 위해서 PageTemplate이라는 디렉토리를 만들어서 적용해주는데, PageTemplate.scss에 스타일 값을 넣어준다. 같은 디렉토리에 index.js 파일은 경로를 줄이기 위해 만든 파일이며 이 모든 파일들을 적용하기 위해서 src/component/App.js에 렌더링시킨다.
 -------------
+(TodoInput 만들기)
+일정을 입력할 수 있는 컴포넌트 만들기
+1. src/component/TodoInput 디렉토리 만들기
+2. 같은 경로에 TodoInput.js 파일을 만들어서 Todo input 창을 만들어줌
+3. 스타일을 적용하기 위해 TodoInput.scss를 만들어주고 스타일을 넣어준다.
+4. 컴포넌트 인덱스 파일을 같은 경로에 index.js파일로 만들어주면 된다.
+#### 정리 - 마찬가지로 input창을 만들기 위해 TodoInput이라는 디렉토리를 만들고 '그 안에' TodoInput.js(입력 컴포넌트), TodoInput.scss(스타일), index.js(컴포넌트 인덱스 파일- 경로단축)를 만들어서 input창을 만들어준다
+-------------
+(TodoItem 만들기)
