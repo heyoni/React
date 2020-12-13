@@ -27,3 +27,10 @@
   
 - ref : ID처럼 특정 DOM에 이름을 다는 것, DOM을 직접적으로 건드려야 할  사용함
 - 리엑트 컴포넌트 : 수명주기가 있음 마운트 👉 (업데이트) 👉 언마운트 순
+
+
+### 리엑트 프로젝트(실전!)
+일정관리 애플리케이션을 개발함. 
+1. create-react-app '폴더명' : 새 프로젝트를 만들고 그 파일로 이동해준다.
+2. yarn ejcet / yarn add sass-loader node-sass classnames : 환경설정 및 sass, classnames를 설치해준다
+3. yarn add open-color : open-color 라이브러리의 색상들을 참조할 수 있게 함 👉  src/styles라는 폴더를 만들어 utils.scss에서 라이브러리를 불러온다.
