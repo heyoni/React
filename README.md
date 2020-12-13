@@ -72,10 +72,20 @@
 -------------
 #### 상태 관리  
 텍스트 입력, 초기 데이터 정의 및 렌더링, 데이터 추가, 수정, 삭제에 관한 상태 처리
-(텍스트 입력)  
-- state에 input값을 정의하고 이 input의 변경 이벤트를 처리할 handleChange 메서드를 만들어서 TodoInput의 props로 전달해준다.
-(초기 데이터 정의 및 렌더링)  
-- state에 todos라는 객체 배열을 만들어서 객체 안에 id, text, done값들을 넣어준다. id값은 고유값으로 나중에 구성된 배열을 렌더링할 때 key값으로 처리함, text는 말 그대로 일정 정보이며 done은 체크 여부를 의미함  
-- TodoList 컴포넌트에 todos 배열을 map 함수를 사용하여 TodoItem으로 구성된 컴포넌트 배열로 변환해준다.
-(데이터 추가)  
--
+- (텍스트 입력)  
+  * state에 input값을 정의하고 이 input의 변경 이벤트를 처리할 handleChange 메서드를 만들어서 TodoInput의 props로 전달해준다.
+- (초기 데이터 정의 및 렌더링)  
+  * state에 todos라는 객체 배열을 만들어서 객체 안에 id, text, done값들을 넣어준다. id값은 고유값으로 나중에 구성된 배열을 렌더링할 때 key값으로 처리함, text는 말 그대로 일정 정보이며 done은 체크 여부를 의미함  
+  * TodoList 컴포넌트에 todos 배열을 map 함수를 사용하여 TodoItem으로 구성된 컴포넌트 배열로 변환해준다.
+- (데이터 추가)  
+  * input에 적은 일정 정보를 todos 배열에 추가하는 기능
+  * setState를 이용하여 todos 안에 넣어준다. id 값은 추가될 떄 마다 증가함, 기존값들과 새로 들어온 값을 합쳐줄 때는 전개연산자(...)을 사용한다.
+- (데이터 수정)
+  * 데이터 수정은 TodoItem을 클릭했을 때 체크 박스를 활성화/비활성화 하는 과정에서 일어남.
+  * 데이터 수정하려면 id로 원하는 데이터를 찾아 slice와 전개 연산자를 사용해서 새 배열을 만드는 방식으로 업데이터 해야함.
+  * components/App.js에서 handleToggle 메서드를 정의하여 TodoList의 onToggle props로 전달함
+  * App 수정 후에는 TodoList도 수정해야함. (props로 받은 onToggle 메서드를 실행할 때 index를 파라미터로 넣어 줘야하기 때문에)
+- (데이터 제거)
+  * handleRemove 메서드를 정의하여 id를 찾아 제거하고 TodoList에 onRemove props로 전달해줌
+  * 현재 만들어진 코드에서는 자식, 부모 모두 onclick 메서드를 가지고 있음. 자식 👉 부모 순으로 메서드가 실행되며 이를 propagation이라고 함
+  * 해결을 위해서는 자식요소에서 e.stopPropagation 함수를 호출해 줘야한다.

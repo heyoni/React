@@ -3,7 +3,6 @@ import styles from './PageTemplate/PageTemplate.scss';
 import classNames from 'classnames/bind'
 
 const cx = classNames.bind(styles);
-
 const PageTemplate = ({children}) => {
     return(
         <div className={cx('page-template')}>
