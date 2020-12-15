@@ -1,70 +1,8 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 리덕스 사용하기
+- 리덕스 : 상태관리 라이브러리로, 컴포넌트 외부에서 상태관리 로직을 처리해주는 도구. 리액트에 의존하지 않음  예를들어, 이전에 만들었던 일정관리 프로젝트에서 state 업데이트시 App이 리렌더링 하는 현상이 발생함. 그에 따라 모든 컴포넌트가 리렌더링 된다.  shouldComponentUpdate라는 메서드를 사용하여 불필요한 업데이트를 방지했음  또한 handleSomething을 사용하여 컴포넌트 간 props를 전달할 수도 있으나 비효율적(헷갈리거나, props갯수 증가, 불필요한 렌더링 등)  이에 따라 리덕스를 사용하게 되었다.  
+- 리덕스 구조
+  1. 컴포넌트 간 props를 전달할 때 액션(상태변환 시 참조하는 객체)값을 스토어에 전달해줘야 하는데, 이 로직을 '디스패치'라고 한다.
+  2. 스토어에는 애플리케이션의 상태 값들을 가지고 있으며 언제나 스토어는 단 한개여야 한다.
+  3. 스토어가 액션을 받으면 리듀서가 전달받은 액션을 기반으로 상태를 어떻게 변경시켜야 할지 정하게 됨.
+  4. 스토어 안에 상태가 바뀌면 스토어를 '구독' 하고 있는 컴포넌트에 전달한다.  
+(주의해야 할 점 : 리덕스의 상태인 state는 읽기전용으로 값을 수정해서는 안된다. 값을 수정하고 싶으면 새 상태 객체를 만들어서 넣어줘야함.)
