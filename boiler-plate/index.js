@@ -34,8 +34,6 @@ app.post('/register', (req, res) => {
     //회원가입시 필요한 정보들을 client에서 받아오면 그것을 db에 넣어줌
 
 
-
-
     //1. user model에서 가져와야함 -> 위에 const { User }... 부분이 그 부분!
     const user = new User(req.body)
     // //이게 req.body에 들어있는 내용임. 이걸 req.body에 들어올 수 있게 하는게 바로 bodyParser
@@ -52,6 +50,7 @@ app.post('/register', (req, res) => {
             success: true
         })
     })
+    //이 전에 비밀번호 암호화를 해야함 -> mongusdb사용
 })
 
 
