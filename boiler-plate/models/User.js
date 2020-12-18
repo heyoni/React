@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const saltRounds = 10
+const jwt = require('jsonwebtoken')
+
 
 const userSchema = mongoose.Schema({
     name: {
@@ -54,8 +56,32 @@ userSchema.pre('save', function( next ){ //next 파라미터를 통해 원래 �
                 next()
             })
         })
+    } else { //이 코드는 비밀번호 외 다른걸 변경할 경우 빠져나가도록 해주는 코드
+        next()
     }
 })
+
+userSchema.methods.comparePassword = function(plainPassword, cb){
+    //plainPassword 1234567를 암호화해서 <---체크---> 암호화된 비밀번호
+    bcrypt.compare(plainPassword, this.password, function(err, isMatch){
+        if (err) return cb(err) //비밀번호가 다를 경우 - cb: call back, 에러를 콜백해줌
+            cb(null, isMatch)//비밀번호가 같을 경우 - cb으로 에러는 null값, isMatch 즉, true값을 콜백해줌
+    })
+}
+
+userSchema.methods.generateToken = function(cb){
+    var user = this
+    //jsonwebtoken을 이용하여 토큰 생성하기
+    var token = jwt.sign(user._id.toHexString(), 'secretToken')
+    // user._id + 'secretToken' = token
+    user.token = token
+    user.save(function(err, user){
+        if(err) return cb(err)
+        cb(null, user)
+    })
+}
+
+
 
 //스키마를 모델로 감싸줘야 함
 //모델 이름, 지정한 스키마 순으로 파라미터를 넣어준다.
