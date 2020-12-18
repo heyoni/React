@@ -8,6 +8,7 @@ const port = 5000
 const bodyParser = require('body-parser')
 const { User } = require("./models/User")
 const cookieParser = require('cookie-parser')
+const auth = require('./middleware/auth')
 
 //로컬인지 배포중인지 확인하여 키를 가지고 옴
 const config = require('./config/key')
@@ -58,7 +59,7 @@ app.post('/register', (req, res) => {
     //이 전에 비밀번호 암호화를 해야함 -> mongusdb사용
 })
 
-app.post('/login', (req, res)=> {
+app.post('/api/users/login', (req, res)=> {
   //1. 요청된 eamil이 DB에 있는지 찾기
   User.findOne({email: req.body.email},(err, user) =>{
     if (!user){//없을경우
@@ -85,6 +86,22 @@ app.post('/login', (req, res)=> {
   })
 })
 
+app.get('/api/users/auth', auth, (req, res) => { //앤드포인트에서 리퀘스트를 받은 다음, 콜백함수가 실행되기 전 auth라는 미들웨어를 실행한다
+  //auth에서 req에 user와 token을 넣어줌으로써 req.user와 req.token을 하면 정보들을 가져올 수 있음
+  //여기까지 미들웨어를 통과했다는 얘기는 Authentication이 true라는 말
+  res.status(200).json({
+    //클라이언트에다 정보를 제공해주면 됨
+    //유저정보들 제공하기
+    _id: req.user._id,
+    isAdmin: req.user.role === 0 ? false : true, //관리자인지 확인해주는 코드 0일때만 관리자
+    isAuth: true,
+    email: req.user.email,
+    name: req.user.name,
+    lastname: req.user.lastname,
+    role: req.user.role,
+    image: req.user.image
+  })
+})
 
 app.listen(port, () => {
   console.log(`Example app listening  at http://localhost:${port}`)

@@ -81,6 +81,19 @@ userSchema.methods.generateToken = function(cb){
     })
 }
 
+userSchema.static.findByToken = function(token, cb){
+    var user = this;
+
+    //복호화하기(토큰을 decode 한다)
+    //토큰을 만들때 userid+'문자들' -> 이걸 secret token으로 만들어줬었음. 이걸 두번째 파라미터로 넣어줌
+    jwt.verify(token, 'secretToken', function(err, decoded){
+        //userid를 이용해서 유저를 찾은 다음 클라이언트에서 가져온 토큰과 db에 보관된 토큰이 일치하는지 확인하기
+        user.findOne({"_id":decoded, "token": token}, funtion(err, user){
+            if(err) return cb(err);
+            cb(null, user); 
+        })
+    })
+}
 
 
 //스키마를 모델로 감싸줘야 함
