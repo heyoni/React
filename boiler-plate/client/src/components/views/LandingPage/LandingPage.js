@@ -1,10 +1,10 @@
-import { response } from 'express'
-import React from 'react'
+import React, { useEffect } from 'react';
+import axios from 'axios';
+
 
 function LandingPage() {
-
     //이 페이지에 들어오자마자 실행되는 코드
-    userEffect(() => {
+    useEffect(() => {
         //get 요청을 서버에 보내줌 Endpoint는 '/api/hello'
         axios.get('/api/hello')
         //보낸 다음 서버에서 돌아오는 응답을 콘솔창에 띄움

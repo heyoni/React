@@ -6,12 +6,12 @@ const express = require('express')
 const app = express()
 const port = 5000
 const bodyParser = require('body-parser')
-const { User } = require("./server/models/User")
+const { User } = require("./models/User")
 const cookieParser = require('cookie-parser')
-const { auth } = require('./server/middleware/auth')
+const { auth } = require('./middleware/auth')
 
 //로컬인지 배포중인지 확인하여 키를 가지고 옴
-const config = require('./server/config/key')
+const config = require('./config/key')
 
 app.use(bodyParser.urlencoded({extended:true}))
 
