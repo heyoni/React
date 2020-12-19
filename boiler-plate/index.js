@@ -102,6 +102,19 @@ app.get('/api/users/auth', auth, (req, res) => { //앤드포인트에서 리퀘�
     image: req.user.image
   })
 })
+ 
+
+
+app.get('/api/users/logout', auth, (res, req) => {
+  User.findOneAndUpdate({_id: req.user._id},//유저를 찾아서 업데이트 시켜줌 ->유저는 아이디로 찾고 (미들웨어) auth에서 req로 넣어준 것을 이용해서 사용함
+    , (err, user)=>{
+      if(err) return res.json({ success: false, err})
+      return res.status(200).send({
+        success: true
+      })
+    })//토큰 지우기
+})
+
 
 app.listen(port, () => {
   console.log(`Example app listening  at http://localhost:${port}`)
