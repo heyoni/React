@@ -47,7 +47,7 @@ userSchema.pre('save', function( next ){ //next 파라미터를 통해 원래 �
     //이름 변경시에도 암호화를 해버리므로 비밀번호를 바꿀 때만 암호화 할 수 있도록 조건을 걸어줌
     if(user.isModified('password')){
         bcrypt.genSalt(saltRounds, function(err, salt){//bcrypt에서 salt를 가져와서 실행함
-            if(err) return next(err)//에러가 나면 원래실행하던 곳으로 에러를 반환하여 돌아감
+            if(err) return next(err)//에러가 나면 원래실행하던 곳으로 에러를findbytoken 반환하여 돌아감
     
             //암호화 되기 전 비밀번호와, salt, function을 이용한 에러처리를 해준다.
             bcrypt.hash(user.password, salt, function(err, hash){//hash가 암호화 된 비밀번호
@@ -81,7 +81,7 @@ userSchema.methods.generateToken = function(cb){
     })
 }
 
-userSchema.static.findByToken = function(token, cb){
+userSchema.statics.findByToken = function(token, cb){
     var user = this;
     //복호화하기(토큰을 decode 한다)
     //토큰을 만들때 userid+'문자들' -> 이걸 secret token으로 만들어줬었음. 이걸 두번째 파라미터로 넣어줌

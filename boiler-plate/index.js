@@ -6,12 +6,12 @@ const express = require('express')
 const app = express()
 const port = 5000
 const bodyParser = require('body-parser')
-const { User } = require("./models/User")
+const { User } = require("./server/models/User")
 const cookieParser = require('cookie-parser')
-const auth = require('./middleware/auth')
+const { auth } = require('./server/middleware/auth')
 
 //로컬인지 배포중인지 확인하여 키를 가지고 옴
-const config = require('./config/key')
+const config = require('./server/config/key')
 
 app.use(bodyParser.urlencoded({extended:true}))
 
@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
   res.send('Hello World! 안녕!fdsfsdfsf')
 })
 
-app.post('/register', (req, res) => {
+app.post('/api/users/register', (req, res) => {
     //회원가입시 필요한 정보들을 client에서 받아오면 그것을 db에 넣어줌
 
 
@@ -105,9 +105,10 @@ app.get('/api/users/auth', auth, (req, res) => { //앤드포인트에서 리퀘�
  
 
 
-app.get('/api/users/logout', auth, (res, req) => {
-  User.findOneAndUpdate({_id: req.user._id},//유저를 찾아서 업데이트 시켜줌 ->유저는 아이디로 찾고 (미들웨어) auth에서 req로 넣어준 것을 이용해서 사용함
-    { token: "" }
+
+app.get('/api/users/logout', auth, (req, res) => {
+  User.findOneAndUpdate({ _id: req.user._id},//유저를 찾아서 업데이트 시켜줌 ->유저는 아이디로 찾고 (미들웨어) auth에서 req로 넣어준 것을 이용해서 사용함
+    { token: "" } //토큰 지워줌
     , (err, user)=>{
       if(err) return res.json({ success: false, err})
       return res.status(200).send({
