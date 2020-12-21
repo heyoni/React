@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {useDispatch} from 'react-redux'
 import { loginUser } from '../../../_actions/user_action'
 
-function LoginPage() {
+function LoginPage(props) {
     const dispatch = useDispatch();
     //서버에 보내고자 하는 값들을 state에서 가지고 있는 것
     const [Email, setEmail] = useState("")
@@ -26,6 +26,13 @@ function LoginPage() {
         }
         //디스패치를 이용하여 액션(상태변환시 나오는 참조값 객체)을 취한다
         dispatch(loginUser(body)) //loginUser는 action폴더에 새로 만들어줌
+            .then(response => { //메인 페이지로 이동하기
+                if(response.payload.loginSuccess){
+                    props.history.push('/') //페이지 이동시 이렇게 사용한다
+                } else {
+                    alert('Error')
+                }
+            })
 
         //이 부분은 _actions/user_action에서 구현할 것
         // Axios.post('/api/user/login', body)

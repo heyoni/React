@@ -13,5 +13,6 @@ export function loginUser(dataToSubmit) { //body에 email,password 값을 파라
         //리듀서에서 (이전상태, 액션)을 조합해서 다음 상태를 조합하는 것이기 때문에
         type: LOGIN_USER,
         payload: request
+        //2. 백엔드에서 가져온 모든 데이터들을 다시 reducer에 넣어줘서
     }
 }
