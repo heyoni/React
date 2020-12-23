@@ -1,6 +1,8 @@
 //리듀서로 보냄, 전상태와 액션을 보내서 현재상태를 return한다.
 import {
-    LOGIN_USER
+    LOGIN_USER,
+    REGISTER_USER,
+    AUTH_USER
 } from '../_actions/types'
 
 export default function (state={}, action){
@@ -10,6 +12,14 @@ export default function (state={}, action){
             //payload : user_acion에 있는 값들을 가져옴
             //1.loginSuccess의 값은 user_action에 있는 값인데,
             //3.결과값을 나타내주게된다.
+            break;
+        case REGISTER_USER:
+            return { ...state, register: action.payload}
+            break;
+
+        case AUTH_USER:
+            return { ...state, userData: action.payload} 
+            //payload에 모든 user데이터(관리자인지, 로그인 된 사용자인지 ..)가 들어있음 그래서 userData로 이름지음
             break;
     
         default:
