@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { API_KEY, API_URL, IMAGE_BASE_URL } from '../../Config'
 import MainImage from './Sections/Mainimage'
-
+import GridCards from '../commons/GridCards'
+import { Row } from 'antd'
 
 const textZip = (props) => { //영화설명이 너무 길어서 임의로 줄이는코드!
     const a = props.split('.')
@@ -22,8 +23,8 @@ function LandingPage() {
         fetch(endpoint)
             .then(response => response.json())//json 형태로 변환하고
             .then(response => {
-                //console.log(response)
-                setMovies([response.results])
+                console.log(response)
+                setMovies([...response.results])
                 setMainMovieImage(response.results[0])//가장 인기있는 영화를 가져옴, 이걸 MainMovie컴포넌트에 넘겨줄 것
             })//그 값을 가져옴
 
@@ -39,14 +40,31 @@ function LandingPage() {
                 <MainImage 
                   image={`${IMAGE_BASE_URL}w1280${MainMovieImage.backdrop_path}`}
                   title={MainMovieImage.original_title}
-
                   text={textZip(MainMovieImage.overview)}
                 />
             }
             {/* 이미지와 url을 모두 가져옴 */}
             <div style={{ width: '85%', margin: '1rem auto'}}>
+                
                 <h2>Movie by lastest</h2>
                 <hr />
+
+
+
+                <Row gutter={[16,16]}>
+                {Movies && Movies.map((movie, index) => (
+                    <React.Fragment key={index}>
+                        <GridCards 
+                            image={movie.poster_path ? 
+                                `${IMAGE_BASE_URL}w500${movie.poster_path}` : null}
+                            movieId={movie.id} //고유의 영화 정보로 들어가기 위해서 id값을 가져옴
+                            movieName={movie.original_title}
+                        
+                        />
+                    </React.Fragment>
+                ))} 
+                {/* 하나하나 나눠서 보여주기 */}
+                </Row>
             </div>
 
             <div style={{ display:'flex', justifyContent:'center'}}>
