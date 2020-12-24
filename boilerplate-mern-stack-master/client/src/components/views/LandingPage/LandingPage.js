@@ -1,15 +1,43 @@
-import React from 'react'
-import { FaCode } from "react-icons/fa";
+import React, { useEffect, useState } from 'react'
+import { API_KEY, API_URL, IMAGE_BASE_URL } from '../../Config'
+import MainImage from './Sections/Mainimage'
+
 
 function LandingPage() {
+    const [Movies, setMovies] = useState([])//가져온 정보(이미지, 영화이름 등)를 넣어줌
+    const [MainMovieImage, setMainMovieImage] = useState(null)
+
+    useEffect(()=>{
+        const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
+
+        fetch(endpoint)
+            .then(response => response.json())//json 형태로 변환하고
+            .then(response => {
+                //console.log(response)
+                setMovies([response.results])
+                setMainMovieImage(response.results[0])//가장 인기있는 영화를 가져옴, 이걸 MainMovie컴포넌트에 넘겨줄 것
+            })//그 값을 가져옴
+
+    }, [])
     return (
-        <>
-            <div className="app">
-                <FaCode style={{ fontSize: '4rem' }} /><br />
-                <span style={{ fontSize: '2rem' }}>Let's Start Coding!</span>
+        <div style={{ width: '100%', margin: '0'}}>
+            {MainMovieImage && //MainMovieImage가 있으면 아래 문장실행
+                <MainImage 
+                  image={`${IMAGE_BASE_URL}w1280${MainMovieImage.backdrop_path}`}
+                  title={MainMovieImage.original_title}
+                  text={MainMovieImage.overview}
+                />
+            }
+            {/* 이미지와 url을 모두 가져옴 */}
+            <div style={{ width: '85%', margin: '1rem auto'}}>
+                <h2>Movie by lastest</h2>
+                <hr />
             </div>
-            <div style={{ float: 'right' }}>Thanks For Using This Boiler Plate by John Ahn</div>
-        </>
+
+            <div style={{ display:'flex', justifyContent:'center'}}>
+                <button>Load more</button>
+            </div>
+        </div>
     )
 }
 
