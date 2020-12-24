@@ -3,9 +3,18 @@ import { API_KEY, API_URL, IMAGE_BASE_URL } from '../../Config'
 import MainImage from './Sections/Mainimage'
 
 
+const textZip = (props) => { //영화설명이 너무 길어서 임의로 줄이는코드!
+    const a = props.split('.')
+    return a[0]+'.'
+}
+
+
 function LandingPage() {
     const [Movies, setMovies] = useState([])//가져온 정보(이미지, 영화이름 등)를 넣어줌
     const [MainMovieImage, setMainMovieImage] = useState(null)
+
+
+
 
     useEffect(()=>{
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
@@ -21,11 +30,17 @@ function LandingPage() {
     }, [])
     return (
         <div style={{ width: '100%', margin: '0'}}>
+                {/* const a = {MainMovieImage.overview}
+                a = a.split('.')
+                console.log(a) */}
+                
             {MainMovieImage && //MainMovieImage가 있으면 아래 문장실행
+
                 <MainImage 
                   image={`${IMAGE_BASE_URL}w1280${MainMovieImage.backdrop_path}`}
                   title={MainMovieImage.original_title}
-                  text={MainMovieImage.overview}
+
+                  text={textZip(MainMovieImage.overview)}
                 />
             }
             {/* 이미지와 url을 모두 가져옴 */}
