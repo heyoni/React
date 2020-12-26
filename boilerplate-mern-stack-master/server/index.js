@@ -34,6 +34,8 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use('/api/users', require('./routes/users'));
+//이걸 꼭 해줘야함  복잡도를 줄이기 위해서 안그러면 favorite 안에 있는 내용들을 index.js에 다 적어줘야 함
+app.use('/api/favorite', require('./routes/favorite'));
 
 
 //use this to show the image you have in node js server to client (react js)

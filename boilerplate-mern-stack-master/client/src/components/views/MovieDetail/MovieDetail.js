@@ -4,6 +4,7 @@ import MainImage from '../LandingPage/Sections/Mainimage'
 import MovieInfo from './Sections/MovieInfo'
 import GridCards from '../commons/GridCards'
 import { Row } from 'antd'
+import Favorite from '../MovieDetail/Sections/Favorite'
 
 
 
@@ -60,6 +61,10 @@ function MovieDetail(props) {
 
             {/* body */}
             <div style={{width: ' 85%', margin: '1rem auto'}}>
+                <Favorite />
+
+
+
                 {/* movie info */}
                 <MovieInfo 
                     movie={Movie}
