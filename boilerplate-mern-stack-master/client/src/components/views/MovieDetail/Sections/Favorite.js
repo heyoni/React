@@ -39,7 +39,6 @@ function Favorite(props) {
             .then(response => {
                 // console.log('favorited : ',response.data)
                 if(response.data.success){
-                    
                     setFavorited(response.data.favorited)
                 } else {
                     alert('정보를 가져오는데 실패했습니다.2')

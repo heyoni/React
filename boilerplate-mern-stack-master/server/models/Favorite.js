@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
-const favoritSchema = mongoose.Schema({
+const favoriteSchema = mongoose.Schema({
     userFrom: {
         type: Schema.Types.ObjectId,
         ref:'User' //코드로 된 유저의 정보를 가져올 수 있음
@@ -22,6 +22,6 @@ const favoritSchema = mongoose.Schema({
 
 
 
-const Favorite = mongoose.model('Favorite', favoritSchema);
+const Favorite = mongoose.model('Favorite', favoriteSchema);
 
 module.exports = { Favorite }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE } from '../../Config'
+import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../Config'
 import MainImage from '../LandingPage/Sections/Mainimage'
 import MovieInfo from './Sections/MovieInfo'
 import GridCards from '../commons/GridCards'
@@ -16,11 +16,9 @@ import Favorite from '../MovieDetail/Sections/Favorite'
 
 function MovieDetail(props) {
     //movieId가져오는 방법
-    let movieId = props.match.params.movieId
+    const movieId = props.match.params.movieId
     const [Movie, setMovie] = useState([])
     const [Casts, setCasts] = useState()
-
-    //
     const [ActorToggle, setActorToggle] = useState(false)
 
 

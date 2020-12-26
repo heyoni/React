@@ -35,7 +35,7 @@ router.post('/removeFromFavorite', (req, res) => {
     Favorite.findOneAndDelete({ movieId: req.body.movieId, userFrom: req.body.userFrom })
         .exec(( err, doc )=>{
             if(err) return res.status(400).send(err)
-            return res.status(200).json({ success: true, doc})
+            res.status(200).json({ success: true, doc})
 
         })
 })
@@ -47,15 +47,15 @@ router.post('/addToFavorite', (req, res) => {
 
     favorite.save((err, doc) =>{//req.body에 있는 모든 정보들을 favorite document에 들어가게 됨
         if(err) return res.status(400).send(err)
-        return res.status(200).json({ success: true })
+        res.status(200).json({ success: true })
     })
 })
 
 router.post('/getFavoritedMovie', (req, res) => {
     Favorite.find({ 'userFrom': req.body.userFrom })
-        .exex((err, favorites) =>{
+        .exec((err, favorites) =>{
             if(err) return res.status(400).send(err)
-            return res.status(200).json({ success: true, favorites })
+            res.status(200).json({ success: true, favorites })
         })
 })
 
