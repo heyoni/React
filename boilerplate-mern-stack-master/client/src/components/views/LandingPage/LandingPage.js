@@ -63,6 +63,7 @@ function LandingPage() {
                 {Movies && Movies.map((movie, index) => (
                     <React.Fragment key={index}>
                         <GridCards 
+                            landingPage
                             image={movie.poster_path ? 
                                 `${IMAGE_BASE_URL}w200${movie.poster_path}` : null}
                             movieId={movie.id} //고유의 영화 정보로 들어가기 위해서 id값을 가져옴
