@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../Config'
+import { API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE } from '../../Config'
 import MainImage from '../LandingPage/Sections/Mainimage'
 import MovieInfo from './Sections/MovieInfo'
 import GridCards from '../commons/GridCards'
@@ -55,6 +55,9 @@ function MovieDetail(props) {
 
             <MainImage 
                 image={`${IMAGE_BASE_URL}w1280${Movie.backdrop_path}`}
+                image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${Movie.backdrop_path}`}
+
+
                 title={Movie.original_title}
                 text={Movie.overview}
             />
