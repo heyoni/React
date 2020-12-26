@@ -61,7 +61,8 @@ function MovieDetail(props) {
 
             {/* body */}
             <div style={{width: ' 85%', margin: '1rem auto'}}>
-                <Favorite />
+                <Favorite movieInfo={Movie} movieId={movieId} userId={localStorage.getItem('userId')} /> 
+                {/* userId는 LoginPage에서 localStorage에 저장된 userId값을 가져옴*/}
 
 
 

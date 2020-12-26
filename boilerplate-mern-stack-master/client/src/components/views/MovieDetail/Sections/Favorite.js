@@ -18,8 +18,9 @@ function Favorite(props) {
         Axios.post('/api/favorite/favoriteNumber', variables) //(endpoint, variables) endpoint는 임의로 정할 수 있음
         //서버부분에서 받아서 처리해줘야 하기 때문에 서버부분을 만져줘야함
             .then(response => {
+                console.log(response.data)
+
                 if(response.data.success){
-                    
 
 
                 } else {
