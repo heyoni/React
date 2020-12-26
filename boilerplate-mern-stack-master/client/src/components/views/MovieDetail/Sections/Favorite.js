@@ -77,7 +77,7 @@ function Favorite(props) {
 
     return (
     <div style={{ display:'flex', justifyContent: 'flex-end'}}>
-        <Button onClick={onClickFavorite}>{Favorited? "좋아요 취소": "좋!아!요"} {FavoriteNumber}</Button>
+        <Button onClick={onClickFavorite}>{Favorited? "좋아요 취소": "좋아요"} {FavoriteNumber}</Button>
 
     </div>
 

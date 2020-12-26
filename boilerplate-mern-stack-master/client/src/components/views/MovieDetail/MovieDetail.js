@@ -55,7 +55,7 @@ function MovieDetail(props) {
 
             <MainImage 
                 image={`${IMAGE_BASE_URL}w1280${Movie.backdrop_path}`}
-                image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${Movie.backdrop_path}`}
+                // image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${Movie.backdrop_path}`}
 
 
                 title={Movie.original_title}
